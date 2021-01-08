@@ -10,7 +10,7 @@ before_install:
 before_script:
   - sleep 15
   - mongo 
-  script: python app.py
+script: python app.py
 notifications:
   email:
     recipients:
