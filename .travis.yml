@@ -1,0 +1,19 @@
+language: python
+python:
+  - 3.8
+services: 
+  - mongodb
+before_install:
+  - python --version
+  - pip install -U pip
+  - pip install -r requirements.txt
+before_script:
+  - sleep 15
+  - mongo 
+  script: python app.py
+notifications:
+  email:
+    recipients:
+      - vpokhapkin@yandex.ru
+    on_success: never
+    on_failure: change
