@@ -10,7 +10,7 @@ before_install:
 before_script:
   - sleep 15
   - mongo mydb --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
-  - mongo --version
+  - mongo mydb --eval 'db.createCollection("contacts");'
 script: python app.py
 notifications:
   email:
