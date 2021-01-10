@@ -10,7 +10,7 @@ before_install:
 before_script:
   - sleep 15
   - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
-  - mongo --eval 'db.adminCommand('listDatabases');'
+  - mongo mydb_test --eval 'db.adminCommand('listDatabases');'
 script: python app.py
 notifications:
   email:
