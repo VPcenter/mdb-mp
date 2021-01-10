@@ -23,7 +23,7 @@ if __name__ == "__main__":
     
     try:
         client=MongoClient('mongodb://travis:test@127.0.0.1:27017/mydb_test')
-        logger.opt(colors=True).debug(f'<m>{client.list_database_names()}</m>') 
+        logger.opt(colors=True).debug(f'<c>{client.list_database_names()}</c>') 
     except:
         logger.opt(colors=True).debug(f'<y>No connection</y>')
 
