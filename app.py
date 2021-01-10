@@ -24,7 +24,8 @@ if __name__ == "__main__":
     try:
         client=MongoClient('mongodb://travis:test@127.0.0.1:27017/mydb')
         logger.opt(colors=True).debug(f'<c>{client.list_database_names()}</c>')
-        collection = client['contacts'] 
+        db =client['mydb']
+        collection = db['contacts'] 
   
         emp_rec1 = { 
                 "name":"Mr.Geek", 
