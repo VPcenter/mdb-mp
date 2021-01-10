@@ -23,7 +23,30 @@ if __name__ == "__main__":
     
     try:
         client=MongoClient('mongodb://travis:test@127.0.0.1:27017/mydb')
-        logger.opt(colors=True).debug(f'<c>{client.list_database_names()}</c>') 
+        logger.opt(colors=True).debug(f'<c>{client.list_database_names()}</c>')
+        collection = db['contacts'] 
+  
+        emp_rec1 = { 
+                "name":"Mr.Geek", 
+                "eid":24, 
+                "location":"delhi"
+                } 
+        emp_rec2 = { 
+                "name":"Mr.Shaurya", 
+                "eid":14, 
+                "location":"delhi"
+                } 
+        
+        # Insert Data 
+        rec_id1 = collection.insert_one(emp_rec1) 
+        rec_id2 = collection.insert_one(emp_rec2) 
+        
+        logger.info(f'Data inserted with record ids {rec_id1} & {rec_id2}') 
+        
+        # Printing the data inserted 
+        cursor = collection.find() 
+        for record in cursor: 
+            logger.info(f'{record}')
     except:
         logger.opt(colors=True).debug(f'<y>No connection</y>')
 
