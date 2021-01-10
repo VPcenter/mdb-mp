@@ -24,9 +24,7 @@ if __name__ == "__main__":
     try:
         client=MongoClient('mongodb://travis:test@127.0.0.1:27017/')
         db=client.mydb_test
-        list_of_db = client.list_database_names()
-        if "mydb_test" in list_of_db:
-            logger.debug(f'Exits')  
+        logger.debug(f'{client.list_database_names()}')  
     except:
         logger.opt(colors=True).debug(f'<y>No connection</y>')
 
