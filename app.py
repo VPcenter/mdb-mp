@@ -2,7 +2,7 @@ import multiprocessing
 import sys
 import os
 
-
+from pymongo.errors import ConnectionFailure
 from multiprocessing import Pool
 from pymongo import MongoClient
 from loguru import logger
@@ -21,8 +21,16 @@ if __name__ == "__main__":
     logger.remove()
     logger.add(sys.stdout, level='DEBUG', format="<g>{time:YYYY-MM-DD HH:mm:ss}</g> | <m>{level}</m> | {message}", enqueue=True)
     
-    client=MongoClient(host='127.0.0.1', port=27017)
-    db=client['mydb_test']
+    try:
+        client=MongoClient(host='127.0.0.1', port=27017)
+        db=client.mydb_test
+        list_of_db = client.list_database_names()
+        if "mydb_test" in list_of_db:
+            logger.debug(f'Exits')
+    except:
+        logger.opt(colors=True).debug(f'<y>No connection</y>')
+
+
 
     begin_time_general_process = time()
 
