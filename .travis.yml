@@ -9,7 +9,7 @@ before_install:
   - pip install -r requirements.txt
 before_script:
   - sleep 15
-  - mongo mydb_test['my_gfg_collection '] --eval 'db.insert_one({"name":"Mr.Geek","eid":24,"location":"delhi"});'
+  - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
 script: python app.py
 notifications:
   email:

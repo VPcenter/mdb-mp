@@ -23,7 +23,7 @@ if __name__ == "__main__":
     
     try:
         client=MongoClient(host='127.0.0.1', port=27017)
-        db=client.mydb_test
+        db=client['mydb_test']
         list_of_db = client.list_database_names()
         if "mydb_test" in list_of_db:
             logger.debug(f'Exits')
