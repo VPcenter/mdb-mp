@@ -22,7 +22,7 @@ if __name__ == "__main__":
     logger.add(sys.stdout, level='DEBUG', format="<g>{time:YYYY-MM-DD HH:mm:ss}</g> | <m>{level}</m> | {message}", enqueue=True)
     
     try:
-        client=MongoClient('mongodb://travis:test@localhost:27017/')
+        client=MongoClient('mongodb://travis:test@127.0.0.1:27017/')
         db=client['mydb_test']
         list_of_db = client.list_database_names()
         if "mydb_test" in list_of_db:
