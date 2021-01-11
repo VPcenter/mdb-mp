@@ -20,7 +20,7 @@ def multiple_mdb_connection(stck_nmbr):
 if __name__ == "__main__":
     logger.remove()
     logger.add(sys.stdout, level='DEBUG', format="<g>{time:YYYY-MM-DD HH:mm:ss}</g> | <m>{level}</m> | {message}", enqueue=True)
-    
+    begin_time_general_process = time()
     try:
         client=MongoClient('mongodb://travis:test@127.0.0.1:27017/mydb')
         logger.opt(colors=True).debug(f'<c>{client.list_database_names()}</c>')
@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
 
 
-    begin_time_general_process = time()
+    
 
     with Pool(processes=8, initializer=set_logger, initargs=(logger,)) as pool:
         pool.map(multiple_mdb_connection, range(10))
