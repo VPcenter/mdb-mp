@@ -24,11 +24,12 @@ if __name__ == "__main__":
     try:
         client=MongoClient('mongodb://travis:test@127.0.0.1:27017/mydb')
         logger.opt(colors=True).debug(f'<c>{client.list_database_names()}</c>')
-        db =client['mydb']
+        db=client['mydb']
         collection = db['contacts'] 
         for idx in range(10):
-            collection.insert_one({"name":"Mr.Geek","eid":24,"location":"delhi"})
-        cursor = collection.find() 
+            collection.insert_one({"name":"Mr.Geek","eid":idx})
+        cursor=collection.find()
+        logger.opt(colors=True).info(f'<g>Number of documents {cursor.count()}</g>')
         for record in cursor: 
             logger.info(f'{record}')
     except:
