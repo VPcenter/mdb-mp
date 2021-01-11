@@ -11,6 +11,7 @@ before_script:
   - sleep 15
   - mongo mydb --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
   - mongo mydb --eval 'db.createCollection("contacts");'
+  - mongo mydb --eval 'db.getCollectionNames();'
 script: python app.py
 notifications:
   email:
