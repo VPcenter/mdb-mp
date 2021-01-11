@@ -29,7 +29,7 @@ if __name__ == "__main__":
         for idx in range(10):
             collection.insert_one({"name":"Mr.Geek","eid":idx})
         cursor=collection.find()
-        logger.opt(colors=True).info(f'<g>Number of documents {cursor.count()}</g>')
+        logger.opt(colors=True).info(f'<g>Number of documents {cursor.count_documents()}</g>')
         for record in cursor: 
             logger.info(f'{record}')
     except:
