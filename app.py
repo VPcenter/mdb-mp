@@ -30,7 +30,7 @@ if __name__ == "__main__":
         logger.opt(colors=True).debug(f'<c>{client.list_database_names()}</c>')
         db=client['mydb']
         collection = db['contacts'] 
-        for idx in range(10):
+        for idx in range(10000):
             collection.insert_one({"name":"Mr.Geek","eid":idx})
         cursor=collection.find().distinct('_id')
         logger.opt(colors=True).info(f'<g>Number of documents {collection.count_documents({})}</g>')
