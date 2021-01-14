@@ -31,10 +31,10 @@ if __name__ == "__main__":
         collection = db['contacts'] 
         for idx in range(10):
             collection.insert_one({"name":"Mr.Geek","eid":idx})
-        cursor=collection.find({})
+        cursor=collection.find().distinct('_id')
         logger.opt(colors=True).info(f'<g>Number of documents {collection.count_documents({})}</g>')
         for record in cursor: 
-            logger.info(f'{record['_id']}')
+            logger.info(f'{record}')
         
         with Pool(processes=8, initializer=set_logger, initargs=(logger,)) as pool:
             pool.map(multiple_mdb_connection, range(collection.count_documents({})))
