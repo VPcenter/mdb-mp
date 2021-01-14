@@ -17,7 +17,7 @@ def multiple_mdb_connection(stck_nmbr):
     client=MongoClient('mongodb://travis:test@127.0.0.1:27017/mydb')
     db=client['mydb']
     collection = db['contacts'] 
-    logger.opt(colors=True).info(f'{multiprocessing.current_process().name} <c>///</c> {collection.find()stck_nmbr}')
+    logger.opt(colors=True).info(f'{multiprocessing.current_process().name} <c>///</c> {stck_nmbr}')
 
 
 if __name__ == "__main__":
