@@ -14,7 +14,10 @@ def set_logger(logger_):
     logger = logger_
 
 def multiple_mdb_connection(stck_nmbr):
-    logger.opt(colors=True).info(f'{multiprocessing.current_process().name} <c>///</c> {stck_nmbr}')
+    client=MongoClient('mongodb://travis:test@127.0.0.1:27017/mydb')
+    db=client['mydb']
+    collection = db['contacts'] 
+    logger.opt(colors=True).info(f'{multiprocessing.current_process().name} <c>///</c> {collection.find()stck_nmbr}')
 
 
 if __name__ == "__main__":
@@ -28,7 +31,7 @@ if __name__ == "__main__":
         collection = db['contacts'] 
         for idx in range(10):
             collection.insert_one({"name":"Mr.Geek","eid":idx})
-        cursor=collection.find()
+        cursor=collection.find({})
         logger.opt(colors=True).info(f'<g>Number of documents {collection.count_documents({})}</g>')
         for record in cursor: 
             logger.info(f'{record['_id']}')
