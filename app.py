@@ -33,8 +33,8 @@ if __name__ == "__main__":
             collection.insert_one({"name":"Mr.Geek","eid":idx})
         cursor=collection.find().distinct('_id')
         logger.opt(colors=True).info(f'<g>Number of documents {collection.count_documents({})}</g>')
-        for record in cursor: 
-            logger.info(f'{record}')
+        stack = [record for record in cursor]
+        logger.info(f'{stack}')
         
         with Pool(processes=8, initializer=set_logger, initargs=(logger,)) as pool:
             pool.map(multiple_mdb_connection, range(collection.count_documents({})))
