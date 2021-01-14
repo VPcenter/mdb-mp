@@ -16,7 +16,7 @@ def set_logger(logger_):
 def multiple_mdb_connection(stck_nmbr):
     client=MongoClient('mongodb://travis:test@127.0.0.1:27017/mydb')
     db=client['mydb']
-    collection = db['contacts'] 
+    collection = db['contacts']
     logger.opt(colors=True).info(f'{multiprocessing.current_process().name} <c>///</c> {stck_nmbr}')
 
 
@@ -37,7 +37,7 @@ if __name__ == "__main__":
         logger.info(f'{stack}')
         
         with Pool(processes=8, initializer=set_logger, initargs=(logger,)) as pool:
-            pool.map(multiple_mdb_connection, range(collection.count_documents({})))
+            pool.map(multiple_mdb_connection, stack)
     except:
         logger.opt(colors=True).debug(f'<y>No connection</y>')
     
