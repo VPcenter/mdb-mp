@@ -3,6 +3,7 @@ import sys
 import os
 
 from pymongo.errors import ConnectionFailure
+from bson.objectid import ObjectId
 from multiprocessing import Pool
 from pymongo import MongoClient
 from loguru import logger
@@ -17,7 +18,7 @@ def multiple_mdb_connection(stck_id):
     client=MongoClient('mongodb://travis:test@127.0.0.1:27017/mydb')
     db=client['mydb']
     collection = db['contacts']
-    logger.opt(colors=True).info(f'{multiprocessing.current_process().name} <c>///</c> {collection.find_one(str(stck_id))}')
+    logger.opt(colors=True).info(f'{multiprocessing.current_process().name} <c>///</c> {collection.find_one({"_id": ObjectId(stck_id)})}')
 
 
 if __name__ == "__main__":
